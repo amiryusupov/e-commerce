@@ -6,15 +6,16 @@ import Recommend from "../components/header/Recommend"
 import Service from "../components/header/Service"
 import StoreList from "../components/header/StoreList"
 import HeaderList from "../components/header/headerlist/HeaderList";
-import NavbarMedia from "../components/media/NavbarMedia";
+import BannerMedia from "../../src/components/media/Banner";
+import Bottom from "../components/media/Bottom";
 
 export default function Main() {
 	return (
 		<div className="main">
-			<NavbarMedia/>
 			<Banner />
 			<StoreList />
 			<HeaderList />
+			<BannerMedia/>
 			<Recommend />
 			<Service />
 			<News />
@@ -35,6 +36,7 @@ export default function Main() {
 					</div>
 				</div>
 			</div>
+			<Bottom/>
 		</div>
 
 	)

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Breadcrumb from "../components/header/Breadcrumb";
 import HeaderListItems from "../components/header/headerlist/HeaderListItems";
-
+import {useDispatch, useSelector} from "react-redux";
+import ReactPaginate from "react-paginate";
 const data = [
     {
         id: 1,
@@ -58,7 +59,8 @@ function Product() {
                                         data.map(item => {
                                             return (
                                                 <li className="brand__row__items-li" key={item.id}>
-                                                    <a href="#" className="brand__row__items-li-text">{item.name}</a>
+                                                    <a href="#"
+                                                       className="brand__row__items-li-text">{item.name}</a>
                                                     <span className="brand__row__items-li-num">{item.num}</span>
                                                 </li>
                                             )
@@ -71,13 +73,25 @@ function Product() {
                     <div className="product__row-item">
                         <HeaderListItems/>
                         <div className="pagination">
-                            <div className="pagination__items">
-                                <span className="pagination__item">1</span>
-                                <span className="pagination__item">2</span>
-                                <span className="pagination__item">3</span>
-                                <span className="pagination__item">4</span>
-                                <span className="pagination__item">5</span>
-                            </div>
+                        {/*    <div className="pagination__items">*/}
+                        {/*        <span className="pagination__item">1</span>*/}
+                        {/*        <span className="pagination__item">2</span>*/}
+                        {/*        <span className="pagination__item">3</span>*/}
+                        {/*        <span className="pagination__item">4</span>*/}
+                        {/*        <span className="pagination__item">5</span>*/}
+                        {/*    </div>*/}
+                            <ReactPaginate
+                                breakLabel="..."
+                                previousLabel="<"
+                                nextLabel=">"
+                                // onPageChange={handlePageClick}
+                                pageRangeDisplayed={3}
+                                pageCount={10}
+                                containerClassName="pagination__items"
+                                pageClassName="pagination__item"
+                                previousClassName="pagination__item"
+                                nextClassName="pagination__item"
+                            />
                         </div>
                     </div>
                 </div>

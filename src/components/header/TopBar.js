@@ -39,13 +39,13 @@ function TopBar() {
 									My profile
 								</span>
 							</div>
-							<div className="top__basket">
+							<Link to={"/cart"} className="top__basket">
 								<img
 									className="top__basket-logo"
 									src={basket__logo}
 									alt=""
 								/>
-							</div>
+							</Link>
 						</div>
 					</div>
 				</div>

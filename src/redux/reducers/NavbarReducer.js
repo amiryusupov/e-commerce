@@ -7,12 +7,12 @@ let initialState = {
 }
 
 const SET_CATEGORIES = "SET_CATEGORIES"
+
 const NavbarReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CATEGORIES:
             state.categories = action.categories
             return state
-
         default:
             return state
     }

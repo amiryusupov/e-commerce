@@ -13,7 +13,7 @@ let routes = [
 	},
 	{
 		id: 2,
-		path: "/products",
+		path: "/products/:slug",
 		component: Product,
 	},
 	{

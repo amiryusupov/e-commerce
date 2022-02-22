@@ -10,7 +10,7 @@
 }
 ::selection {
   color: $white-color;
-  background-color: crimson;
+  background-color: #80e3ff;
 }
 ul li {
   list-style: none;
@@ -25,7 +25,111 @@ ul li {
   margin: 0 auto;
   padding: 0 20px;
 }
+// 404 start
+.page_not_found {
+  @include d-flex(center, center, column, unset);
+  width: 100%;
+  height: 100%;
 
+  .emoji_img {
+    width: 300px;
+    height: 300px;
+  }
+  .text_404 {
+    font-family: $main-font;
+    font-style: normal;
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 70px;
+    color: $navbar-color;
+    margin-bottom: 10px;
+  }
+  .text_not {
+    font-family: $main-font;
+    font-style: normal;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 35px;
+    color: $nav__popup-content;
+  }
+  .page-btns {
+    @include d-flex(center, center, row, unset);
+    margin-top: 15px;
+
+    .page-btn {
+      font-family: $main-font;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 22px;
+      text-decoration: none;
+      border: 2px solid $navbar-btn-bg-color;
+      padding: 7px;
+      border-radius: 10px;
+      transition: all 0.3s;
+
+      &:first-child {
+        margin-right: 15px;
+        color: $navbar-btn-bg-color;
+        &:hover {
+          color: $white-color;
+          background-color: $navbar-btn-bg-color;
+      }
+      }
+      &:last-child {
+        color: $white-color;
+        background-color: $navbar-btn-bg-color;
+        &:hover {
+          color: $navbar-btn-bg-color;
+          background-color: $white-color;
+        }
+      }
+    }
+  }
+}
+// 404 end
+
+//PageLoading - start
+.pageLoading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $white-color;
+  z-index: 10;
+  @include d-flex(center, center, row, unset);
+
+  .loadingDot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $header__list-li;
+    animation: dotAnim 0.5s infinite;
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+  .loadingDot1 {
+    animation: pulse 0.4s ease 0s infinite alternate;
+  }
+  .loadingDot2 {
+    animation: pulse 0.4s ease 0.2s infinite alternate;
+  }
+  .loadingDot3 {
+    animation: pulse 0.4s ease 0.4s infinite alternate;
+  }
+}
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to{
+    opacity: 0.25;
+    transform: scale(0.75);
+  }
+}
+// PageLoading - end
 /* T O P B A R - S T A R T */
 .top__row {
   @include d-flex(center, space-between, row, unset);
@@ -97,10 +201,11 @@ ul li {
   position: relative;
   .navbar__row {
     @include d-flex(center, space-between, row, unset);
-    padding: 25px 0;
+    margin: 25px 0;
 
     .navbar__logo {
       @include d-flex(center, center, row, unset);
+      text-decoration: none;
 
       .navbar__logo-text {
         font-family: $main-font;
@@ -168,6 +273,8 @@ ul li {
           line-height: 36px;
           color: $navbar-color;
           margin-right: 35px;
+          background: transparent;
+          border: none;
           cursor: pointer;
           text-decoration: none;
         }
@@ -177,7 +284,7 @@ ul li {
           position: absolute;
           content: '';
           right: 0;
-          top: 5rem;
+          top: 4rem;
           opacity: 0;
           visibility: hidden;
           z-index: 10;
@@ -188,73 +295,68 @@ ul li {
             opacity: 1;
             visibility: visible;
           }
-
           &-row {
-            @include d-flex(center, space-between, row, unset);
+            @include d-flex(flex-start, unset, row, unset);
             width: 100%;
-            height: 50vh;
-            max-width: 1000px;
-            padding: 0 85px;
+            min-height: auto;
+            padding: 20px;
             background-color: $white-color;
             border-top: 2px solid $popup-border-color;
 
             .nav__popup-list {
-              @include d-flex(flex-start, center, column, unset);
-              height: 50vh;
+              @include d-flex(start, center, column, unset);
 
               .nav__popup-content {
                 font-family: $main-font;
                 font-style: normal;
                 font-weight: 500;
-                font-size: 22px;
+                font-size: 18px;
                 line-height: 33px;
-                color: $nav__popup-content;
-                margin-top: 40px;
+                color: $navbar-color;
+                margin-bottom: 20px;
+                cursor: pointer;
               }
+            }
+          }
+        }
+        .nav__popup-right {
+          flex: 1 1 auto;
+          padding-left: 15px;
 
-              .nav__popup-items {
-                @include d-flex(center, space-around, row, unset);
-                height: 45vh;
+          .nav__popup-flex1 {
+            @include d-flex(flex-start, space-between, row, wrap);
+            margin-right: 45px;
 
-                .nav__popup-flex1 {
-                  @include d-flex(center, space-around, column, unset);
-                  height: 90%;
-                  margin-right: 45px;
+            .nav__popup-item {
+              .nav__popup-text {
+                font-family: $main-font;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 24px;
+                text-decoration: none;
+                color: $topbar-black-color;
+              }
+            }
 
-                  .nav__popup-item {
-                    .nav__popup-text {
-                      font-family: $main-font;
-                      font-style: normal;
-                      font-weight: normal;
-                      font-size: 16px;
-                      line-height: 24px;
-                      text-decoration: none;
-                      color: $topbar-black-color;
-                    }
-                  }
-                }
+            .nav__popup-flex {
+              @include d-flex(center, space-around, column, unset);
+              height: 90%;
 
-                .nav__popup-flex {
-                  @include d-flex(center, space-around, column, unset);
-                  height: 90%;
-
-                  .nav__popup-item {
-                    .nav__popup-text {
-                      font-family: $main-font;
-                      font-style: normal;
-                      font-weight: normal;
-                      font-size: 16px;
-                      line-height: 24px;
-                      text-decoration: none;
-                      color: $topbar-black-color;
-                    }
-                  }
+              .nav__popup-item {
+                .nav__popup-text {
+                  font-family: $main-font;
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 16px;
+                  line-height: 24px;
+                  text-decoration: none;
+                  color: $topbar-black-color;
                 }
               }
             }
           }
         }
-
         .navbar__comp-contact {
           font-family: $main-font;
           font-style: normal;
@@ -296,20 +398,29 @@ ul li {
 
 /* S T O R E L I S T - S T A R T */
 .store__list-items {
-  @include d-flex(center, center, row, unset);
-  background-color: #F6F6F6;
+  @include d-flex(center, space-between, row, unset);
+  background-color: $white-color;
   transform: translate(0px, -88px);
+  width: 100%;
+  height: 100%;
+  border: 2px solid $navbar-border-color;
 
   .store__list-box {
     @include d-flex(start, center, column, unset);
     position: relative;
-    height: 355px;
-    width: 410px;
+    width: 30%;
     border-radius: 5px;
-    padding: 10px 20px 0;
+    padding: 10px 20px;
 
-    .store__list-box-content {
-      width: 50%;
+    &-img {
+      width: 100%;
+      height: 70%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &-content {
       font-family: $main-font;
       font-style: normal;
       font-weight: bold;
@@ -317,6 +428,10 @@ ul li {
       line-height: 150%;
       letter-spacing: 0.5px;
       color: $store__list-box-content;
+      text-decoration: none;
+    }
+    &-content:hover {
+      text-decoration: underline;
     }
     .store__list-box-sale span:first-child {
       font-family: $main-font;
@@ -339,8 +454,6 @@ ul li {
       color: $store__list-box-sale-color;
     }
     .store__list-box-price {
-      display: flex;
-      justify-content: end;
       width: 100%;
       font-family: $main-font;
       font-style: normal;
@@ -370,94 +483,37 @@ ul li {
       line-height: 52px;
       color: $navbar-color;
     }
-      .header__list-ul {
-        @include d-flex(center, center, row, unset);
-        text-align: center;
-
-        .header__list-li:not(:last-child){
-          margin-right: 50px;
-        }
-        .header__list-li {
-          margin: 25px 0;
-
-          a {
-            position: relative;
-            width: 100%;
-            font-family: $main-font;
-            color: $topbar-black-color;
-            font-size: 22px;
-            text-decoration: none;
-            transition: all .3s;
-
-            &::after {
-              content: '';
-              position: absolute;
-              bottom: -2px;
-              left: 0;
-              width: 0;
-              height: 2px;
-              background-color: $header__list-li;
-              transition: all 0.3s;
-          }
-            &:hover {
-              color: $header__list-li;
-
-              &::after {
-                width: 100%;
-              }
-          }
-        }
-      }
-    }
   }
   .header__list-body {
     @include d-flex(center, center, row, wrap);
     width: 100%;
 
     &-box {
+      border: 2px solid $nav__popup-content;
+      &:hover {
+        border: 2px solid transparent;
+        box-shadow: 0 0 13px 2px rgba(0,0,0,0.65);
+      }
       @include d-flex(center, center, column, unset);
       position: relative;
       margin:  0 10px 20px 0;
+      padding-top: 10px;
+      border-radius: 10px;
       transition: all 0.3s;
+      text-decoration: none;
 
-      .header__list-popup {
-        @include d-flex(center, center, row, unset);
-        position: absolute;
-        top: 7%;
-        right: 4%;
-        width: 0;
-        height: 0;
-        opacity: 0;
-        visibility: hidden;
-        background-color: $white-color;
-        //transform: translate(-4%, 12%);
-
-        &-img1, &-img2 {
-          @include d-flex(center, center, column, unset);
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          border: 2px solid $header__list-popup-border;
+        .header__list-body-img {
           cursor: pointer;
-
-        }
-       &-img1 {
-         margin-right: 12px;
-       }
-        &.active {
-          width: 278px;
-          height: 219px;
-          opacity: 0.95;
-          visibility: visible;
+          width: 300px;
+          height: 270px;
+          object-fit: scale-down;
         }
       }
       .header__list-body-content {
+        @include d-flex(center, center, column, unset);
         width: 100%;
         text-align: center;
         padding: 10px;
-        border-right: 3px solid #F6F7F8;
-        border-left: 3px solid #F6F7F8;
-        border-bottom: 3px solid $header__list-body-content;
 
         .header__list-body-text {
           font-family: $main-font;
@@ -534,7 +590,6 @@ ul li {
         background-color: $header__list-li;
       }
     }
-  }
 }
 /* H E A D E R L I S T - E N D */
 
@@ -592,8 +647,16 @@ ul li {
       }
     }
     .recommend__product-img {
-      width: 55%;
-      transform: translate(0px, -100px);
+      width: 800px;
+      height: 600px;
+      transform: translate(0px, -90px);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: rotate(-5deg);
+      }
     }
   }
 }
@@ -1012,7 +1075,7 @@ ul li {
 
       &__items {
         @include d-flex(start, space-between, column, unset);
-        height: 371px;
+        height: auto;
         width: 270px;
         background: $header__list-body-content;
         padding: 19px 17px 26px 20px;
@@ -1071,54 +1134,25 @@ ul li {
       @include d-flex(end, center, row, wrap);
 
       &-box {
+        &:hover {
+          box-shadow: 0 0 13px 2px rgba(0,0,0,0.65);
+        }
         @include d-flex(center, center, column, unset);
         position: relative;
         margin:  49px 10px 20px 0;
+        border-radius: 15px;
         transition: all 0.3s;
 
         .header__list-body-img {
-          height: 270px;
           width: 300px;
-        }
-
-        .header__list-popup {
-          @include d-flex(center, center, row, unset);
-          position: absolute;
-          top: 7%;
-          right: 4%;
-          width: 0;
-          height: 0;
-          opacity: 0;
-          visibility: hidden;
-          background-color: $white-color;
-          //transform: translate(-4%, 12%);
-
-          &-img1, &-img2 {
-            @include d-flex(center, center, column, unset);
-            height: 50px;
-            width: 50px;
-            border-radius: 50%;
-            border: 2px solid $header__list-popup-border;
-            cursor: pointer;
-
-          }
-          &-img1 {
-            margin-right: 12px;
-          }
-          &.active {
-            width: 278px;
-            height: 219px;
-            opacity: 0.95;
-            visibility: visible;
-          }
+          height: 270px;
+          object-fit: scale-down;
         }
         .header__list-body-content {
+          @include d-flex(center, center, column, unset);
           width: 100%;
-          text-align: center;
           padding: 10px;
-          border-right: 3px solid #F6F7F8;
-          border-left: 3px solid #F6F7F8;
-          border-bottom: 3px solid $header__list-body-content;
+          text-align: center;
 
           .header__list-body-text {
             font-family: $main-font;
@@ -1134,12 +1168,6 @@ ul li {
           .header__list-body-text:hover {
             text-decoration: underline;
           }
-          .header__list-body-stars {
-            margin: 5px 0;
-            img:not(:last-child) {
-              margin-right: 13px;
-            }
-          }
           .header__list-body-price {
             font-family: $main-font;
             font-style: normal;
@@ -1149,26 +1177,6 @@ ul li {
             margin-right: 10px;
             letter-spacing: 0.5px;
             color: $navbar-btn-bg-color;
-          }
-          .header__list-body-money {
-            font-family: $main-font;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 14px;
-            line-height: 150%;
-            letter-spacing: 0.5px;
-            text-decoration-line: line-through;
-            margin-right: 8px;
-            color: $store__list-box-sale;
-          }
-          .header__list-body-percent {
-            font-family: $main-font;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 14px;
-            line-height: 150%;
-            letter-spacing: 0.5px;
-            color: $store__list-box-sale-color;
           }
         }
       }
@@ -1228,13 +1236,370 @@ ul li {
     }
   }
 }
-
 /* PRODUCT - END */
+
+/* P R O D U C T L I S T - S T A R T */
+.product__list_row {
+  @include d-flex(center, space-between, row, wrap);
+  position: relative;
+  width: 100%;
+  margin-top: 42px;
+
+  .product__list_img {
+    width: 550px;
+
+    .product__list-image {
+      width: 400px;
+      height: 350px;
+      margin-bottom: 55px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: scale-down;
+      }
+    }
+    .product__list-images {
+      @include d-flex(center, flex-start, row, wrap);
+      img {
+        width: 100px;
+        height: 100px;
+        border: 2px solid $popup-border-color;
+        object-fit: scale-down;
+      }
+      img.active {
+        border: 2px solid $header__list-li;
+      }
+      img:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+  .product__list_info {
+    width: 35%;
+    @include d-flex(flex-start, start, column, wrap);
+
+    &-title {
+      width: 100%;
+      &-name {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 36px;
+        color: $navbar-color;
+        margin-bottom: 22px;
+      }
+
+      .product__list_info-review {
+        border-bottom: 2px solid $header__list-body-content;
+        padding-bottom: 15px;
+        margin-top: 15px;
+
+        &s {
+          font-family: $main-font;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 19px;
+          color: $nav__popup-content;
+          margin-right: 15px;
+        }
+
+        .product__list_info-submit {
+          font-family: $main-font;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 19px;
+          color: $header__list-li;
+          text-decoration: none;
+        }
+      }
+    }
+    &-cat {
+      @include d-flex(flex-start, center, column, unset);
+      margin-top: 15px;
+      width: 100%;
+
+      &-price {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 180%;
+        letter-spacing: 0.5px;
+        color: $navbar-btn-bg-color;
+      }
+      &-sale, &-acces, &-ship {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        color: $topbar-black-color;
+        margin-top: 16px;
+      }
+      border-bottom: 2px solid $header__list-body-content;
+      padding-bottom: 22px;
+      margin-top: 15px;
+    }
+    &-select {
+      width: 100%;
+      margin-top: 20px;
+      &ing, .product__list_info-size {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        color: $navbar-color;
+      }
+      .product__list_info-size {
+        margin-top: 35px;
+        border-bottom: 2px solid $header__list-body-content;
+        padding-bottom: 22px;
+
+        &-text {
+          margin-right: 90px;
+        }
+        &-style {
+          height: 35px;
+          width: 120px;
+          border: 2px solid $popup-border-color;
+          option {
+            background-color: $popup-border-color;
+          }
+        }
+        &-style:focus {
+          outline: none;
+        }
+      }
+    }
+    &-buy {
+      @include d-flex(center, space-between, row, wrap);
+      width: 100%;
+      margin-top: 20px;
+
+      &-state {
+        @include d-flex(center, space-between, row, unset);
+        height: 50px;
+        width: 125px;
+        background: $header__list-body-content;
+
+        .product__list_info-buy-add {
+            color: $header__list-li;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .product__list_info-buy-num {
+          font-family: $main-font;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 19px;
+          color: $navbar-color;
+        }
+      }
+        .product__list_info-buy-cart {
+          @include d-flex(center, center, row, unset);
+          width: 160px;
+          height: 50px;
+          border: none;
+          cursor: pointer;
+
+          img {
+            margin-right: 15px;
+          }
+          .product__list_info-buy-name {
+            font-family: $main-font;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+            color: $header__list-li;
+          }
+        }
+          border-bottom: 2px solid $header__list-body-content;
+          padding-bottom: 22px;
+          margin-top: 15px;
+    }
+  }
+
+}
+/* P R O D U C T L I S T - E N D */
+
+/* C A R T - S T A R T */
+.cart__row {
+  @include d-flex(center, center, column, unset);
+
+  .cart__title {
+    @include d-flex(center, center, row, unset);
+    width: 100%;
+    border-bottom: 2px solid $header__list-body-content;
+    padding-bottom: 22px;
+    margin-top: 15px;
+
+    &-product {
+      font-family: $main-font;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 30px;
+      color: $navbar-color;
+    }
+    &-product1 {
+      width: 55%;
+    }
+    &-product2 {
+      width: 15%;
+    }
+    &-product3 {
+      width: 15%;
+    }
+  }
+  .cart__item {
+    @include d-flex(center, flex-start, row, wrap);
+    width: 100%;
+    margin-top: 40px;
+    border-bottom: 2px solid $header__list-body-content;
+    padding-bottom: 40px;
+
+    &-del {
+      @include d-flex(unset, center, column, unset);
+      border: 2px solid transparent;
+      background-color: rgba(255, 0, 0, 0.05);
+      border-radius: 50%;
+      padding: 10px 12px;
+      cursor: pointer;
+      margin-right: 47px;
+
+      i {
+        color: $cart__item-del;
+        transform: scale(1.4);
+      }
+    }
+    &-img {
+      height: 170px;
+      width: 200px;
+      margin-right: 28px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 7px;
+      }
+    }
+    &-name , &-price, &-unitPrice{
+      font-family: $main-font;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 27px;
+      color: $topbar-black-color;
+    }
+    &-name {
+      width: 34%;
+    }
+    &-price {
+      width: 15%;
+    }
+    &-state {
+      @include d-flex(center, space-between, row, unset);
+      height: 50px;
+      width: 125px;
+      background: $header__list-body-content;
+      margin-right: 68px;
+
+      &-add {
+        color: $header__list-li;
+        padding: 15px;
+        border: none;
+        cursor: pointer;
+      }
+      &-num {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: $navbar-color;
+      }
+    }
+  }
+  .cart__info {
+    margin-top: 80px;
+    width: 100%;
+    @include d-flex(center, space-between, row, wrap);
+
+    &-left, &-right {
+      @include d-flex(flex-start, center, column, unset);
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 35%;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: $header__list-body-content;
+      }
+
+      &-item {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 27px;
+        color: $topbar-black-color;
+
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+      &-text {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 45px;
+        color: $navbar-color;
+        margin-top: 40px;
+      }
+    }
+  }
+  .cart__check {
+    @include d-flex(center, center, unset, unset);
+    width: 100%;
+    height: 60px;
+    background-color: $header__list-li;
+    cursor: pointer;
+    margin-top: 25px;
+
+    &-text {
+      font-family: $main-font;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      color: $white-color;
+      text-decoration: none;
+    }
+  }
+}
+/* C A R T - E N D */
+
+
+
+
+
+
 
 /* Navbar Media - START */
 .navbar__media__row {
   @include d-flex(center, center, row, unset);
   display: none;
+  margin: 15px 0;
 
   &-input {
     padding: 7px 16px;
@@ -1267,7 +1632,6 @@ ul li {
     color: $store__list-box-sale;
     font-size: 30px;
     margin: 0 18px;
-    cursor: pointer;
   }
   &-bell {
     color: $store__list-box-sale;
@@ -1276,3 +1640,31 @@ ul li {
   }
 }
 /* Navbar Media - End */
+
+/* Banner Media - Start */
+.banner__media-row {
+  display: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 90vh;
+  background: linear-gradient(180deg, #000000 -28.64%, rgba(0, 0, 0, 0) 100%), url("../../assets/img/recommend-product.jpg") no-repeat;
+  background-size: cover;
+  margin-bottom: 80px;
+
+  &-text {
+    width: 50%;
+    span {
+      font-family: $main-font;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 50px;
+      line-height: 150%;
+      letter-spacing: 0.5px;
+      color: $white-color;
+    }
+  }
+}
+.bottom {
+  display: none;
+}
+/* Banner Media - End */

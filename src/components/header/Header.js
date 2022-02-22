@@ -8,11 +8,13 @@ import Recommend from "./Recommend"
 import Service from "./Service"
 import News from "./News"
 import FeaturedProduct from "./FeaturedProduct"
+import NavbarMedia from "../media/NavbarMedia";
 function Header(props) {
 	return (
 		<div className="header">
 			<TopBar />
 			<Navbar />
+			<NavbarMedia/>
 		</div>
 	)
 }

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getRecommended} from "../../redux/reducers/RecommendedProducts";
+import {Link} from "react-router-dom";
 
 function StoreList() {
 
@@ -10,7 +11,7 @@ function StoreList() {
 
     useEffect(() => {
         dispatch(getRecommended())
-    }, [dispatch])
+    }, [])
 
     return (
         <div className="store__list">
@@ -20,12 +21,12 @@ function StoreList() {
                     categories.map((item)=> {
                         return (
                                 <div className="store__list-box" key={item.id}>
-                                    <div className="store__list-box-content">
-                                        <span>{item.name_uz.substr(0, 20)}...</span>
-                                    </div>
                                     <div className="store__list-box-img">
                                         <img src={item.image} alt=""/>
                                     </div>
+                                    <Link to={"/product/:slug"} className="store__list-box-content">
+                                        <span title={item.name_uz}>{item.name_uz.substr(0, 20)}...</span>
+                                    </Link>
                                     {/*<div className="store__list-box-sale">*/}
                                     {/*    <span>${item.sale} </span>*/}
                                     {/*    <span>{item.percent}% Off</span>*/}

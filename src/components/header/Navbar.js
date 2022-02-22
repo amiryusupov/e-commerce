@@ -7,14 +7,12 @@ import {useDispatch, useSelector} from "react-redux";
 
 function Navbar() {
 	const [active, setActive] = useState(true)
-
-	const state = useSelector(state => state)
+	const [activeCategoryId, SetActiveCategoryId] = useState(0)
+	const state = useSelector(state => state.navbar.categories)
 	const dispatch = useDispatch()
-	const categories = state.navbar.categories
 
 	useEffect(() => {
 		dispatch(getCategories())
-		console.log(state.navbar)
 	}, [])
 
 	return (
@@ -45,10 +43,6 @@ function Navbar() {
 						<div className="navbar__comp">
 							<ul className="navbar__comp-ul">
 								<li>
-									<i
-										className="fa fa-bars"
-										aria-hidden="true"
-									></i>
 									<button
 										className="navbar__comp-cat"
 										onClick={() => setActive(!active)}
@@ -63,47 +57,59 @@ function Navbar() {
 										}
 									>
 										<div className="nav__popup-row">
-											{categories.map((category) => {
-												return (
-													<div
-														key={category.id}
-														className="nav__popup-list"
-													>
-														<span className="nav__popup-content">
-															{category.name_uz}
-														</span>
-														{/*<div className="nav__popup-items">*/}
-														{/*	<ul className="nav__popup-flex1">*/}
-														{/*		{category.children.map(*/}
-														{/*			(*/}
-														{/*				subCat*/}
-														{/*			) => {*/}
-														{/*				return (*/}
-														{/*					<li*/}
-														{/*						key={*/}
-														{/*							subCat.id*/}
-														{/*						}*/}
-														{/*						className="nav__popup-item"*/}
-														{/*					>*/}
-														{/*						<Link*/}
-														{/*							to={*/}
-														{/*								subCat.slug*/}
-														{/*							}*/}
-														{/*							className="nav__popup-text"*/}
-														{/*						>*/}
-														{/*							{*/}
-														{/*								subCat.cat_name*/}
-														{/*							}*/}
-														{/*						</Link>*/}
-														{/*					</li>*/}
-														{/*				)*/}
-														{/*			}*/}
-														{/*		)}*/}
-														{/*	</ul>*/}
-														{/*</div>*/}
-													</div>
-												)
-											})}
+											<div className="nav__popup-left">
+												{state.map((category, index) => {
+													return (
+														<div
+															key={category.id}
+															className="nav__popup-list"
+														>
+															<span className="nav__popup-content" onClick={()=> SetActiveCategoryId(index)}>
+																{category.name_uz}
+															</span>
+														</div>
+													)
+												})}
+											</div>
+											<div className="nav__popup-right">
+													<ul className="nav__popup-flex1">
+														{state[activeCategoryId]?.children?.map(
+															(
+																subCat
+															) => {
+																return (
+																	<li
+																		key={
+																			subCat.id
+																		}
+																		className="nav__popup-item"
+																	>
+																		<Link
+																			to={`/products/${subCat.slug}`}
+																			className="nav__popup-text"
+																			style={{fontWeight: "bold"}}
+																		>
+																			{
+																				subCat.name_uz
+																			}
+																		</Link>
+																		<ul>
+																			{
+																				subCat?.children.map (subCatItem => {
+																					return (
+																						<li key={subCatItem?.id}>
+																							<Link to={`/products/${subCatItem.slug}`} className="nav__popup-text">{subCatItem.name_uz}</Link>
+																						</li>
+																					)
+																				})
+																			}
+																		</ul>
+																	</li>
+																)
+															}
+														)}
+													</ul>
+												</div>
 										</div>
 									</div>
 								</li>

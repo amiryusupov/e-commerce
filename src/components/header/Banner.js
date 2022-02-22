@@ -1,4 +1,5 @@
 import React from "react"
+import '../../assets/style/media.scss'
 
 export default function Banner() {
 	return (
